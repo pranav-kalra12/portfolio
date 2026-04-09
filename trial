@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranav Kalra | Finance & Data Science Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #0A192F; /* Deep Finance Blue */
+            --secondary-color: #172A45;
+            --accent-color: #64FFDA; /* Data Science Teal */
+            --text-main: #CCD6F6;
+            --text-muted: #8892B0;
+            --bg-main: #020C1B;
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: var(--accent-color); transition: 0.3s; }
+        a:hover { opacity: 0.8; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(2, 12, 27, 0.95);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .logo { font-family: var(--font-serif); font-size: 1.5rem; color: var(--text-main); font-weight: bold;}
+        
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-main); font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        /* --- SECTION LAYOUTS --- */
+        section {
+            padding: 100px 10vw;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2.section-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        
+        #hero h1 {
+            font-family: var(--font-serif);
+            font-size: 5rem;
+            color: var(--text-main);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        #hero h3 {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .btn {
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1rem;
+            display: inline-block;
+            margin-right: 15px;
+            margin-bottom: 15px;
+        }
+        .btn:hover { background: rgba(100, 255, 218, 0.1); }
+
+        /* --- EXPERIENCE SECTION --- */
+        .job {
+            margin-bottom: 50px;
+            background: var(--secondary-color);
+            padding: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .job:hover { transform: translateY(-5px); }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .job-title { font-size: 1.4rem; color: var(--text-main); font-weight: 600; }
+        .job-company { color: var(--accent-color); font-size: 1.1rem; }
+        .job-date { color: var(--text-muted); font-size: 0.9rem; }
+
+        .job ul {
+            list-style: none;
+            margin-left: 20px;
+        }
+        
+        .job ul li {
+            position: relative;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .job ul li::before {
+            content: '▹';
+            position: absolute;
+            left: -20px;
+            color: var(--accent-color);
+        }
+
+        /* --- EDUCATION & SKILLS --- */
+        .edu-item { margin-bottom: 30px; }
+        .edu-item h3 { color: var(--text-main); }
+        .edu-item p { color: var(--text-muted); }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: var(--secondary-color);
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .skill-category h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+        }
+
+        .skill-category p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var
