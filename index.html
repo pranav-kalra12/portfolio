@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pranav Kalra — Finance & Markets</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #F4F0E8;
+    --cream: #EDE8DC;
+    --gold: #B8960C;
+    --gold-light: #D4AC2A;
+    --gold-pale: #F5ECC4;
+    --charcoal: #1A1A1A;
+    --dark: #0D0D0D;
+    --mid: #3A3A3A;
+    --muted: #7A7A7A;
+    --rule: #D4C9A8;
+    --green: #1A5C3A;
+    --green-light: #2E8B5A;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--ivory);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ─── TICKER ─── */
+  .ticker-wrap {
+    background: var(--charcoal);
+    color: var(--gold-light);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 8px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+  }
+  .ticker-track {
+    display: inline-block;
+    animation: ticker 35s linear infinite;
+  }
+  .ticker-track span {
+    margin: 0 40px;
+  }
+  .ticker-track .up { color: #4CAF50; }
+  .ticker-track .dn { color: #F44336; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 30px; left: 0; right: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 60px;
+    background: rgba(244, 240, 232, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    padding-top: 120px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    padding: 80px 60px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 32px;
+    font-style: italic;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--mid);
+    max-width: 440px;
+    margin-bottom: 44px;
+  }
+
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--charcoal);
+    color: var(--ivory);
+    padding: 13px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--charcoal);
+    transition: all 0.25s;
+  }
+  .btn-primary:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--dark);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--charcoal);
+    padding: 13px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--rule);
+    transition: all 0.25s;
+  }
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .hero-right {
+    height: 100vh;
+    background: var(--charcoal);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 60px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,150,12,0.15) 0%, transparent 70%);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 36px;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    padding: 28px 24px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.25s;
+  }
+  .stat-card:hover { background: rgba(255,255,255,0.07); }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .portfolio-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(184,150,12,0.25);
+    padding: 24px;
+    font-family: 'DM Mono', monospace;
+  }
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .portfolio-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+  }
+  .portfolio-value {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+  }
+  .portfolio-rows { display: flex; flex-direction: column; gap: 10px; }
+  .portfolio-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.75rem;
+  }
+  .portfolio-row:last-child { border-bottom: none; }
+  .p-ticker { color: rgba(255,255,255,0.7); letter-spacing: 0.08em; }
+  .p-change.pos { color: #4CAF50; }
+  .p-change.neg { color: #F44336; }
+  .p-alpha { color: var(--gold-light); }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 100px 80px; max-width: 1300px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    color: var(--charcoal);
+    margin-bottom: 60px;
+    line-height: 1.2;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--rule);
+    margin: 0 80px;
+    max-width: calc(1300px - 160px);
+  }
+
+  /* ─── ABOUT ─── */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    padding: 100px 80px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .about-left .section-heading { margin-bottom: 24px; }
+
+  .about-text {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--mid);
+    margin-bottom: 20px;
+  }
+
+  .about-reading {
+    margin-top: 32px;
+    padding: 20px 24px;
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+  }
+  .about-reading-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .about-reading p { font-size: 0.9rem; color: var(--mid); font-style: italic; }
+
+  .about-right { display: flex; flex-direction: column; gap: 16px; padding-top: 80px; }
+
+  .skill-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .skill-row:first-child { border-top: 1px solid var(--rule); }
+  .skill-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--charcoal);
+  }
+  .skill-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .skill-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    padding: 3px 9px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    color: var(--mid);
+  }
+
+  /* ─── EXPERIENCE ─── */
+  #experience { padding: 100px 80px; max-width: 1300px; margin: 0 auto; }
+
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    padding: 44px 0;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.2s;
+    position: relative;
+  }
+  .exp-item:first-child { border-top: 1px solid var(--rule); }
+
+  .exp-meta { padding-top: 4px; }
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .exp-location {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .exp-content {}
+  .exp-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .exp-company {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .exp-bullets li {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--mid);
+    padding-left: 18px;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.8rem;
+  }
+
+  .exp-tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
+  .exp-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+  }
+
+  /* ─── EDUCATION ─── */
+  #education {
+    background: var(--charcoal);
+    max-width: 100%;
+    margin: 0;
+    padding: 100px 80px;
+  }
+  #education .section-eyebrow { color: var(--gold-light); }
+  #education .section-eyebrow::before { background: var(--gold-light); }
+  #education .section-heading { color: var(--ivory); margin-bottom: 60px; }
+  #education-inner { max-width: 1300px; margin: 0 auto; }
+
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .edu-main {
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 40px;
+  }
+  .edu-school {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 4px;
+  }
+  .edu-degree {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .edu-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    margin-bottom: 28px;
+  }
+  .edu-stat {
+    background: rgba(255,255,255,0.03);
+    padding: 18px 16px;
+  }
+  .edu-stat-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+  }
+  .edu-stat-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .edu-courses-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 12px;
+  }
+  .edu-courses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .edu-course {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    padding: 4px 12px;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em;
+  }
+
+  .edu-side { display: flex; flex-direction: column; gap: 16px; }
+  .edu-side-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 24px;
+  }
+  .edu-side-card h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+  }
+  .edu-side-card p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ─── INTERESTS ─── */
+  #interests { padding: 100px 80px; max-width: 1300px; margin: 0 auto; }
+
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .interest-card {
+    background: var(--cream);
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .interest-card:hover { background: var(--charcoal); }
+  .interest-card:hover .interest-name { color: var(--ivory); }
+  .interest-card:hover .interest-detail { color: rgba(255,255,255,0.4); }
+  .interest-card:hover .interest-icon { color: var(--gold-light); }
+
+  .interest-icon {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    color: var(--gold);
+    transition: color 0.25s;
+  }
+  .interest-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+    transition: color 0.25s;
+  }
+  .interest-detail {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    transition: color 0.25s;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--charcoal);
+    max-width: 100%;
+    margin: 0;
+    padding: 100px 80px;
+  }
+  #contact-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  #contact .section-eyebrow { color: var(--gold-light); }
+  #contact .section-eyebrow::before { background: var(--gold-light); }
+  #contact .section-heading { color: var(--ivory); margin-bottom: 16px; }
+  .contact-sub {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 36px;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 14px; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    padding: 14px 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.25s;
+  }
+  .contact-link:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+  .contact-link-icon { font-size: 1rem; color: var(--gold); }
+
+  .contact-right {
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 40px;
+  }
+  .contact-right h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--ivory);
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+  .cta-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .cta-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.4);
+  }
+  .cta-list li::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 0.5rem;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    padding: 30px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.3);
+  }
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    nav { padding: 16px 24px; }
+    .nav-links { gap: 20px; }
+    section { padding: 60px 24px; }
+    #about, #contact-inner, .edu-grid { grid-template-columns: 1fr; gap: 40px; }
+    .interests-grid { grid-template-columns: 1fr 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 16px; }
+    #education, #contact { padding: 60px 24px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .hero-left { padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Ticker -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tickerTrack">
+    <span>TSX: XIU <span class="up">+0.43%</span></span>
+    <span>S&P 500: SPY <span class="up">+0.81%</span></span>
+    <span>USD/CAD <span class="dn">-0.12%</span></span>
+    <span>10Y CA BOND: 3.42%</span>
+    <span>GOLD: $3,218.40 <span class="up">+0.55%</span></span>
+    <span>WTI CRUDE: $79.20 <span class="dn">-0.28%</span></span>
+    <span>BTC/USD: $94,120 <span class="up">+2.1%</span></span>
+    <span>PORTFOLIO α: +2.3% vs S&P</span>
+    <span>TSX COMP: 25,341 <span class="up">+0.38%</span></span>
+    <span>CAD 5Y BOND: 3.18%</span>
+    <span>TSX: XIU <span class="up">+0.43%</span></span>
+    <span>S&P 500: SPY <span class="up">+0.81%</span></span>
+    <span>USD/CAD <span class="dn">-0.12%</span></span>
+    <span>10Y CA BOND: 3.42%</span>
+    <span>GOLD: $3,218.40 <span class="up">+0.55%</span></span>
+    <span>WTI CRUDE: $79.20 <span class="dn">-0.28%</span></span>
+    <span>BTC/USD: $94,120 <span class="up">+2.1%</span></span>
+    <span>PORTFOLIO α: +2.3% vs S&P</span>
+    <span>TSX COMP: 25,341 <span class="up">+0.38%</span></span>
+    <span>CAD 5Y BOND: 3.18%</span>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">PK<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#interests">Profile</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-left fade-up">
+    <div class="hero-tag">Rotman Commerce · University of Toronto</div>
+    <h1 class="hero-name">Pranav<br><em>Kalra</em></h1>
+    <p class="hero-title">Finance & Economics · Data Science · Markets</p>
+    <p class="hero-desc">
+      Incoming third-year commerce student at UofT with hands-on experience in M&A advisory, 
+      treasury operations, and equity portfolio management. I sit at the intersection of 
+      financial rigour and analytical precision.
+    </p>
+    <div class="hero-btns">
+      <a href="#experience" class="btn-primary">View Experience</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">3.6</div>
+        <div class="stat-label">Sessional GPA / 4.0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$10K</div>
+        <div class="stat-label">Portfolio Under Mgmt.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">+2.3%</div>
+        <div class="stat-label">Alpha vs S&P 500</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$3K</div>
+        <div class="stat-label">Grants Secured (Cricket)</div>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-header">
+        <div class="portfolio-label">Portfolio Snapshot</div>
+        <div class="portfolio-value">Family Account · Active</div>
+      </div>
+      <div class="portfolio-rows">
+        <div class="portfolio-row">
+          <span class="p-ticker">ENB.TO</span>
+          <span class="p-change pos">+4.2%</span>
+          <span class="p-alpha">Core Hold</span>
+        </div>
+        <div class="portfolio-row">
+          <span class="p-ticker">BNS.TO</span>
+          <span class="p-change pos">+2.8%</span>
+          <span class="p-alpha">Core Hold</span>
+        </div>
+        <div class="portfolio-row">
+          <span class="p-ticker">NVDA</span>
+          <span class="p-change pos">+18.1%</span>
+          <span class="p-alpha">Growth</span>
+        </div>
+        <div class="portfolio-row">
+          <span class="p-ticker">XIU.TO</span>
+          <span class="p-change pos">+3.4%</span>
+          <span class="p-alpha">Index</span>
+        </div>
+        <div class="portfolio-row">
+          <span class="p-ticker">Overall α</span>
+          <span class="p-change pos">+2.3%</span>
+          <span class="p-alpha">vs Benchmark</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- About -->
+<div id="about">
+  <div class="about-left fade-up">
+    <div class="section-eyebrow">About</div>
+    <h2 class="section-heading">Finance mind,<br>analyst instincts.</h2>
+    <p class="about-text">
+      I'm a Finance & Economics specialist at Rotman Commerce, St. Michael's College, UofT — 
+      with a Data Science focus woven through my curriculum. My background spans real M&A 
+      deal exposure at Mercantile M&A Corp, full treasury ownership at UTSRI, and active 
+      equity portfolio management.
+    </p>
+    <p class="about-text">
+      I think in terms of capital allocation, operational efficiency, and risk-adjusted return. 
+      Whether I'm normalizing EBITDA on a sell-side mandate or renegotiating vendor contracts 
+      to cut club costs by 30%, I approach problems with the same framework: understand the 
+      numbers, find the inefficiency, execute.
+    </p>
+    <div class="about-reading">
+      <div class="about-reading-label">Currently Reading</div>
+      <p>The Intelligent Investor — Benjamin Graham</p>
+    </div>
+  </div>
+
+  <div class="about-right fade-up">
+    <div class="section-eyebrow" style="margin-bottom:24px;">Core Competencies</div>
+    <div class="skill-row">
+      <span class="skill-name">Financial Analysis</span>
+      <div class="skill-tags">
+        <span class="skill-tag">FSA</span>
+        <span class="skill-tag">EBITDA</span>
+        <span class="skill-tag">Valuation</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-name">Treasury & Ops</span>
+      <div class="skill-tags">
+        <span class="skill-tag">Budgeting</span>
+        <span class="skill-tag">Reconciliation</span>
+        <span class="skill-tag">Forecasting</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-name">Deal Exposure</span>
+      <div class="skill-tags">
+        <span class="skill-tag">M&A</span>
+        <span class="skill-tag">Sell-Side</span>
+        <span class="skill-tag">NDA Work</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-name">Technical Tools</span>
+      <div class="skill-tags">
+        <span class="skill-tag">Excel</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">PowerPoint</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-name">Languages</span>
+      <div class="skill-tags">
+        <span class="skill-tag">English</span>
+        <span class="skill-tag">Hindi</span>
+        <span class="skill-tag">Punjabi</span>
+        <span class="skill-tag">French</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-name">Markets</span>
+      <div class="skill-tags">
+        <span class="skill-tag">Equities</span>
+        <span class="skill-tag">TSX</span>
+        <span class="skill-tag">Portfolio Mgmt.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Experience -->
+<section id="experience" class="fade-up">
+  <div class="section-eyebrow">Experience</div>
+  <h2 class="section-heading">Where I've worked.</h2>
+
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">Jun 2023 – Aug 2023</div>
+        <div class="exp-location">Toronto, ON</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Investment Banking Summer Analyst</div>
+        <div class="exp-company">Mercantile M&A Corp</div>
+        <ul class="exp-bullets">
+          <li>Ran sell-side outreach for senior advisors, managing prospect correspondence and keeping the deal pipeline current across active mandates.</li>
+          <li>Built an Excel-based outreach tracker with the analyst team, converting physical records into a centralized database and cutting admin follow-up time by 20%.</li>
+          <li>Authored a firm-published piece on early-career IB internships under direct MD guidance.</li>
+          <li>Worked under NDA on live mandates — direct exposure to deal sourcing, client interactions, and the end-to-end M&A advisory process.</li>
+        </ul>
+        <div class="exp-tag-row">
+          <span class="exp-tag">M&A Advisory</span>
+          <span class="exp-tag">Sell-Side</span>
+          <span class="exp-tag">Excel</span>
+          <span class="exp-tag">Deal Pipeline</span>
+          <span class="exp-tag">Client Relations</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">Apr 2026 – Present</div>
+        <div class="exp-location">Toronto, ON</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Director of Treasury</div>
+        <div class="exp-company">University of Toronto Student Research Initiative (UTSRI)</div>
+        <ul class="exp-bullets">
+          <li>Own full financial operations for a 50+ member organization — budgeting, expense tracking, and period-end reconciliation across all annual initiatives.</li>
+          <li>Secured and administered university grants and external sponsorships to fund a GTA-wide High School Case Competition with 100+ participants.</li>
+          <li>Produced financial reports and forecasts for executive leadership, enabling data-driven resource allocation across Academics, Logistics, and Communications departments.</li>
+        </ul>
+        <div class="exp-tag-row">
+          <span class="exp-tag">Treasury</span>
+          <span class="exp-tag">Budgeting</span>
+          <span class="exp-tag">Grant Management</span>
+          <span class="exp-tag">Financial Reporting</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">Jul 2025 – Present</div>
+        <div class="exp-location">Toronto, ON</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">VP (Incoming) · Director of Finance</div>
+        <div class="exp-company">UTSG Cricket Club</div>
+        <ul class="exp-bullets">
+          <li>Elected VP for 2026–27; will assume executive oversight of club operations, strategic planning, and stakeholder relationships.</li>
+          <li>Raised ~$3,000 through CPSIF and EngSoc grants, private sponsorships, and player fees — fully covering club operating costs.</li>
+          <li>Managed a $3,000 annual budget, identified spending inefficiencies, and cut per-event costs by 25% while growing participation.</li>
+          <li>Renegotiated vendor terms and transitioned to a new supplier — cut recurring procurement costs by 30% and redirected savings toward member programming.</li>
+        </ul>
+        <div class="exp-tag-row">
+          <span class="exp-tag">Cost Reduction</span>
+          <span class="exp-tag">Vendor Negotiation</span>
+          <span class="exp-tag">Strategic Planning</span>
+          <span class="exp-tag">Sponsorship</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">Mar 2023 – Jan 2025</div>
+        <div class="exp-location">Brampton, ON</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Team Leader, Volunteer</div>
+        <div class="exp-company">William Osler Health System</div>
+        <ul class="exp-bullets">
+          <li>Coordinated patient flow for 50+ individuals weekly across departments, reducing bottlenecks and improving average wait times.</li>
+          <li>Promoted ahead of peers to lead a team of 10+ volunteers — restructured shift scheduling and communication protocols, improving workflow efficiency by 30%.</li>
+        </ul>
+        <div class="exp-tag-row">
+          <span class="exp-tag">Leadership</span>
+          <span class="exp-tag">Operations</span>
+          <span class="exp-tag">Team Management</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Education -->
+<div id="education">
+  <div id="education-inner">
+    <div class="section-eyebrow">Education</div>
+    <h2 class="section-heading">Academic Foundation.</h2>
+    <div class="edu-grid fade-up">
+      <div class="edu-main">
+        <div class="edu-school">Rotman Commerce</div>
+        <div class="edu-degree">University of Toronto · St. Michael's College · Class of 2028</div>
+        <div class="edu-stats">
+          <div class="edu-stat">
+            <div class="edu-stat-val">3.6</div>
+            <div class="edu-stat-lbl">Sessional GPA</div>
+          </div>
+          <div class="edu-stat">
+            <div class="edu-stat-val">2028</div>
+            <div class="edu-stat-lbl">Graduation Year</div>
+          </div>
+          <div class="edu-stat">
+            <div class="edu-stat-val">$5K</div>
+            <div class="edu-stat-lbl">Scholarship Awarded</div>
+          </div>
+        </div>
+        <div class="edu-courses-label">Relevant Coursework</div>
+        <div class="edu-courses">
+          <span class="edu-course">Financial Accounting</span>
+          <span class="edu-course">Microeconomics</span>
+          <span class="edu-course">Finance</span>
+          <span class="edu-course">Statistics</span>
+          <span class="edu-course">Capital Investment</span>
+        </div>
+      </div>
+      <div class="edu-side">
+        <div class="edu-side-card">
+          <h4>Specialization</h4>
+          <p>Finance & Economics Specialist with a Data Science focus — quantitative methods applied to capital markets and investment analysis.</p>
+        </div>
+        <div class="edu-side-card">
+          <h4>Award</h4>
+          <p>Hubert Sceats Memorial Residence Scholarship — $5,000 awarded in recognition of academic and community achievement.</p>
+        </div>
+        <div class="edu-side-card">
+          <h4>Long-Term Path</h4>
+          <p>Targeting a Canadian MBA followed by a Masters at the University of St. Gallen (HSG), Switzerland — a global finance & strategy programme.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Interests -->
+<section id="interests" class="fade-up">
+  <div class="section-eyebrow">Profile</div>
+  <h2 class="section-heading">Beyond the spreadsheet.</h2>
+  <div class="interests-grid">
+    <div class="interest-card">
+      <div class="interest-icon">♟</div>
+      <div class="interest-name">Chess</div>
+      <div class="interest-detail">~1350 Elo · Competitive</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-icon">🎹</div>
+      <div class="interest-name">Piano</div>
+      <div class="interest-detail">Classically Trained</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-icon">🏏</div>
+      <div class="interest-name">Cricket</div>
+      <div class="interest-detail">UTSG Cricket Club VP</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-icon">📈</div>
+      <div class="interest-name">Markets</div>
+      <div class="interest-detail">Active Equity Tracker</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-icon">⚽</div>
+      <div class="interest-name">Soccer</div>
+      <div class="interest-detail">UofT Intramurals</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-icon">🏀</div>
+      <div class="interest-name">Basketball</div>
+      <div class="interest-detail">UofT Intramurals</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-icon">🏊</div>
+      <div class="interest-name">Swimming</div>
+      <div class="interest-detail">Recreational</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-icon">📚</div>
+      <div class="interest-name">Finance Lit.</div>
+      <div class="interest-detail">The Intelligent Investor</div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<div id="contact">
+  <div id="contact-inner" class="fade-up">
+    <div>
+      <div class="section-eyebrow">Contact</div>
+      <h2 class="section-heading">Let's connect.</h2>
+      <p class="contact-sub">
+        Open to conversations about finance internships, M&A, equity research, 
+        data science applications in finance, or anything markets-related.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:pranav.kalra@mail.utoronto.ca" class="contact-link">
+          <span class="contact-link-icon">✉</span>
+          pranav.kalra@mail.utoronto.ca
+        </a>
+        <a href="https://linkedin.com/in/pranavk12" target="_blank" class="contact-link">
+          <span class="contact-link-icon">in</span>
+          linkedin.com/in/pranavk12
+        </a>
+        <a href="tel:+16475145472" class="contact-link">
+          <span class="contact-link-icon">☎</span>
+          +1 (647) 514-5472
+        </a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <h3>What I'm looking for</h3>
+      <ul class="cta-list">
+        <li>Summer 2026 internships in investment banking, equity research, or corporate finance</li>
+        <li>Case competitions and finance challenges at UofT and beyond</li>
+        <li>Networking with finance professionals and alumni in Toronto</li>
+        <li>Collaborative projects at the intersection of data science and financial analysis</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">Pranav Kalra</div>
+  <div class="footer-copy">© 2026 · Rotman Commerce · University of Toronto</div>
+</footer>
+
+<script>
+  // Intersection Observer for fade-up
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => obs.observe(el));
+
+  // Stagger hero immediately
+  document.querySelector('#hero .fade-up').classList.add('visible');
+</script>
+</body>
+</html>
